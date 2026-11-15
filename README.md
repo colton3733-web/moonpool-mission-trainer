@@ -17,7 +17,7 @@ The gold marker identifies the next story object. Other rooms remain accessible 
 
 ## Story
 
-Prepare Moonpool for lunar night: repair Bloop’s air scrubber, plan essential power with Moss, water and harvest Nori’s crops, carry food to Luma’s shelter, fix Pip’s seal and backup connection, trace Skim’s water supplies, restore Pebble’s fan before its practice deadline, then complete Tink’s integrated rehearsal. The physical actions advance the existing mission simulation. Walking and reading do not spend mission resources or advance mission time.
+Prepare Moonpool for lunar night: repair Bloop’s air scrubber, plan essential power with Moss, water and harvest Nori’s crops, carry food to Luma’s shelter, fix Pip’s seal and backup connection, trace Skim’s water supplies, restore Pebble’s fan before its practice deadline, then complete Tank’s integrated rehearsal. The physical actions advance the existing mission simulation. Walking and reading do not spend mission resources or advance mission time.
 
 Characters, music, and the original eight world GLBs are retained. The new traversable interior is built for human-scale movement and collision; the original world models remain available as overview environments in the handbook. Guides are hand-drawn billboards, not rigged 3D characters. The in-world material keys out the original screenshot’s white background at rendering time; the source PNG is unchanged.
 

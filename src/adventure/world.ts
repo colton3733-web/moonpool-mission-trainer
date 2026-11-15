@@ -23,7 +23,7 @@ export const rooms: Room[] = [
   ["pip", "Lava Tube Workshop", "Pip", "#f49a77"],
   ["skim", "Water Recovery", "Skim", "#8bc9e6"],
   ["pebble", "Observation & Comms", "Pebble", "#d5a6d7"],
-  ["tink", "Mission Control", "Tink", "#f8b86e"],
+  ["tink", "Mission Control", "Tank", "#f8b86e"],
 ].map(([id, name, guide, color], index) => ({
   id,
   name,

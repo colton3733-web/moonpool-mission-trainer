@@ -43,7 +43,7 @@ export const chapters: Chapter[] = [
   {
     title: "A breath of fresh air",
     intro:
-      "Welcome aboard! Tink needs every part of Moonpool ready for lunar night. First, find Bloop in the Bubble Dome. Walk down the corridor and turn left through the first doorway.",
+      "Welcome aboard! Tank needs every part of Moonpool ready for lunar night. First, find Bloop in the Bubble Dome. Walk through the glass connector and turn left through the first airlock.",
     handoff:
       "The air is improving! Moss needs help storing power for the night. Carry what you learned across the corridor to Solar Ridge.",
     tasks: [
@@ -331,7 +331,7 @@ export const chapters: Chapter[] = [
     intro:
       "Welcome to the lookout! I’m Pebble. Our fan needs power before a local deadline. A delayed answer cannot do the work for us.",
     handoff:
-      "The fan is restored and your report is accurate. Tink needs you across the corridor for the final combined readiness check.",
+      "The fan is restored and your report is accurate. Tank needs you across the glass connector for the final combined readiness check.",
     tasks: [
       {
         at: "guide",
@@ -366,13 +366,13 @@ export const chapters: Chapter[] = [
   {
     title: "One crew. One Moonpool.",
     intro:
-      "You made it! I’m Tink. Air, power, food, protection, repairs, water, and planning work together. Let’s bring the whole base through its final rehearsal.",
+      "You made it! I’m Tank. Air, power, food, protection, repairs, water, and planning work together. Let’s bring the whole base through its final rehearsal.",
     handoff:
       "Moonpool is ready! You helped every crewmate, carried real supplies, and made the systems work together. Keep exploring—this is your station.",
     tasks: [
       {
         at: "guide",
-        action: "Talk to Tink",
+        action: "Talk to Tank",
         line: "First, check that everyone reaches the prepared shelter. Use the crew coordination station.",
       },
       {

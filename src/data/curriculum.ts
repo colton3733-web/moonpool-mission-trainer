@@ -145,8 +145,8 @@ export const curriculum: CurriculumLevel[] = [
     briefing: 'Practice values: restore airflow by minute 6. Backup startup takes 2 minutes and 3 energy. Pause the camera to use its allocation, or draw from the 5-token battery. Send an accurate update. Support-link delay is artificially set to 10 minutes each way.',
   },
   {
-    id: 8, title: 'Run the Whole Outpost', topic: 'Outpost command', guide: 'Tink', world: 'tink', accent: '#ffc16f', site: 'Moon',
-    intro: 'Tink’s Mission Control brings the whole crew together. Protect people, supply essentials, repair the pump, plan meals, and finish useful science. Every choice changes what remains for another system. Explain what your plan protects and what it costs.',
+    id: 8, title: 'Run the Whole Outpost', topic: 'Outpost command', guide: 'Tank', world: 'tink', accent: '#ffc16f', site: 'Moon',
+    intro: 'Tank’s Mission Control brings the whole crew together. Protect people, supply essentials, repair the pump, plan meals, and finish useful science. Every choice changes what remains for another system. Explain what your plan protects and what it costs.',
     lessons: [
       { title: 'Protect the Crew First', body: 'Start the shelter transfer early enough to meet the practice deadline. Advance simulated minutes to move the crew, then report what actually happened. Waiting for the artificial support reply cannot replace the local procedure.' },
       { title: 'Separate Once and Every Round', body: 'Pump repair and robot deployment are one-time costs. Essentials and crop lights are charged each crisis round. Keep already-paid costs in the history, not in the next bill.' },

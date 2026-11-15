@@ -293,6 +293,131 @@ function ScrubberFan({ running }: { running: boolean }) {
     </group>
   );
 }
+
+/** A visible, human-scale transit system: not a hidden corridor between boxes. */
+function GlassConnector({ z }: { z: number }) {
+  return (
+    <group position={[0, 0, z]}>
+      <mesh position={[0, 2.05, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[2.65, 2.65, 3.9, 20, 1, true]} />
+        <meshStandardMaterial color="#78d9ea" transparent opacity={0.16} side={THREE.DoubleSide} roughness={0.18} metalness={0.45} />
+      </mesh>
+      {[-1.75, -0.88, 0, 0.88, 1.75].map((x) => (
+        <mesh key={x} position={[x, 2.05, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <torusGeometry args={[2.67, 0.07, 8, 20]} />
+          <meshStandardMaterial color="#dce6e6" metalness={0.5} roughness={0.35} />
+        </mesh>
+      ))}
+      <Box p={[-2.44, 0.45, 0]} s={[0.1, 0.14, 3.5]} c="#f3a34f" emissive />
+      <Box p={[2.44, 0.45, 0]} s={[0.1, 0.14, 3.5]} c="#f3a34f" emissive />
+      <Box p={[0, 0.03, 0]} s={[3.7, 0.03, 3.55]} c="#476477" />
+      <Box p={[0, 0.055, 0]} s={[0.08, 0.035, 2.9]} c="#4ce4e5" emissive />
+    </group>
+  );
+}
+
+function MoonVista() {
+  return (
+    <group>
+      <mesh position={[0, -1.35, -33]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[88, 110, 22, 22]} />
+        <meshStandardMaterial color="#5c6076" roughness={1} />
+      </mesh>
+      {Array.from({ length: 34 }, (_, i) => {
+        const x = ((i * 31) % 68) - 34;
+        const z = -8 - ((i * 17) % 98);
+        const r = 0.35 + ((i * 7) % 10) / 10;
+        return (
+          <mesh key={i} position={[x, -1.27, z]} rotation={[-Math.PI / 2, 0, 0]}>
+            <ringGeometry args={[r * 0.58, r, 12]} />
+            <meshBasicMaterial color="#363c52" transparent opacity={0.6} />
+          </mesh>
+        );
+      })}
+      <mesh position={[19, 19, -72]}>
+        <sphereGeometry args={[6, 24, 18]} />
+        <meshStandardMaterial color="#6bb8e4" emissive="#2e6ea7" emissiveIntensity={0.35} roughness={0.75} />
+      </mesh>
+    </group>
+  );
+}
+
+function WorldShell({ room }: { room: Room }) {
+  const { x, z, id, color } = room;
+  const glassWorld = ["bloop", "nori", "skim"].includes(id);
+  const craterWorld = ["luma", "pip"].includes(id);
+  return (
+    <group position={[x, 0, z]}>
+      {glassWorld && (
+        <>
+          <mesh position={[0, 0.1, 0]}>
+            <sphereGeometry args={[8.45, 28, 16, 0, Math.PI * 2, 0, Math.PI / 2]} />
+            <meshStandardMaterial color="#75ddef" transparent opacity={0.12} side={THREE.DoubleSide} roughness={0.1} metalness={0.35} />
+          </mesh>
+          {Array.from({ length: 10 }, (_, n) => (
+            <mesh key={n} position={[0, 0.1, 0]} rotation={[0, (n * Math.PI) / 10, 0]}>
+              <torusGeometry args={[8.46, 0.045, 6, 32, Math.PI]} />
+              <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.3} />
+            </mesh>
+          ))}
+        </>
+      )}
+      {craterWorld && (
+        <>
+          <mesh position={[0, 4.1, 0]}>
+            <sphereGeometry args={[9.5, 18, 12, 0, Math.PI * 2, 0, Math.PI / 2]} />
+            <meshStandardMaterial color={id === "pip" ? "#513d43" : "#4e506d"} roughness={0.95} />
+          </mesh>
+          {id === "pip" && <Box p={[0, 0.08, -5.2]} s={[12.5, 0.05, 1.3]} c="#ff7c32" emissive />}
+          {id === "luma" && [-4, -2, 1, 4].map((v) => <mesh key={v} position={[v, 1.05, -5.5]}><octahedronGeometry args={[0.7, 0]} /><meshStandardMaterial color="#b66dff" emissive="#7140cc" emissiveIntensity={0.7} /></mesh>)}
+        </>
+      )}
+      {id === "moss" && (
+        <>
+          {[0, 1, 2].map((tier) => <Box key={tier} p={[0, 0.45 + tier * 1.25, -6.8 + tier * 2.1]} s={[15 - tier * 2, 0.65, 2.1]} c="#566474" />)}
+          {[-5.5, -2.7, 0, 2.7, 5.5].map((v) => <group key={v} position={[v, 3.3, -1]} rotation={[-0.5, 0, 0]}><Box p={[0, 0, 0]} s={[2.15, 1.25, 0.08]} c="#2d6fae" emissive /><Box p={[0, 0, 0.06]} s={[1.8, 0.9, 0.025]} c="#86d8f1" emissive /></group>)}
+        </>
+      )}
+      {id === "pebble" && (
+        <>
+          <Cylinder p={[0, 3.4, -6.4]} r={3.9} h={0.3} c="#8d68b8" />
+          <Box p={[0, 2.3, -7.4]} s={[9.5, 3.8, 0.18]} c="#3b607d" />
+          <Box p={[0, 2.3, -7.25]} s={[8.5, 2.6, 0.025]} c="#64cde8" emissive />
+        </>
+      )}
+      {id === "tink" && (
+        <>
+          <Cylinder p={[0, 0.08, 0]} r={7.5} h={0.18} c="#6a7887" />
+          <Cylinder p={[0, 0.2, 0]} r={3.6} h={0.16} c="#2f6174" />
+          <mesh position={[0, 1.25, 0]}>
+            <cylinderGeometry args={[2.6, 2.6, 0.08, 40]} />
+            <meshStandardMaterial color="#2d8faa" emissive="#2fdde5" emissiveIntensity={0.55} transparent opacity={0.72} />
+          </mesh>
+          {Array.from({ length: 8 }, (_, n) => <Box key={n} p={[Math.sin(n * Math.PI / 4) * 5.5, 1.1, Math.cos(n * Math.PI / 4) * 5.5]} s={[0.38, 2.2, 0.38]} c="#dce5e2" />)}
+        </>
+      )}
+    </group>
+  );
+}
+
+function MissionHub() {
+  return (
+    <group position={[0, 0, 6.2]}>
+      <Cylinder p={[0, 0.04, 0]} r={5.8} h={0.1} c="#607887" />
+      <mesh position={[0, 0.11, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[3.7, 4.3, 48]} />
+        <meshBasicMaterial color="#53dce8" transparent opacity={0.7} />
+      </mesh>
+      <Cylinder p={[0, 0.8, -1.3]} r={1.25} h={1.5} c="#28576d" />
+      <mesh position={[0, 2.1, -1.3]}>
+        <sphereGeometry args={[1.15, 20, 14]} />
+        <meshStandardMaterial color="#4fd7e7" emissive="#1ca7c5" emissiveIntensity={0.75} transparent opacity={0.75} />
+      </mesh>
+      <TextSign text="TANK · MISSION CONTROL" p={[0, 3.55, -3.1]} width={4.5} rotation={[0, 0, 0]} color="#f8c675" />
+      {[-4.4, 4.4].map((x) => <Box key={x} p={[x, 1.3, 0]} s={[1.8, 1.5, 0.8]} c="#26445c" />)}
+    </group>
+  );
+}
 function RoomDecor({ room, story }: { room: Room; story: StoryState }) {
   const { index: i, x, z, color } = room;
   const complete = story.finished || story.chapter > i;
@@ -552,7 +677,7 @@ function InteriorRoom({
   return (
     <group>
       <Box p={[x, -0.12, z]} s={[16, 0.24, 16]} c={floor} />
-      <Box p={[x, 4.4, z]} s={[16, 0.2, 16]} c="#8eacb2" />
+      {/* WorldShell supplies a distinctive roof instead of a flat rectangular ceiling. */}
       {colliders
         .filter(
           (c) =>
@@ -831,20 +956,21 @@ function StationScene({
       dpr={[1, 1.5]}
       gl={{ antialias: true, powerPreference: "high-performance" }}
     >
-      <color attach="background" args={["#132a40"]} />
-      <fog attach="fog" args={["#132a40", 45, 120]} />
-      <ambientLight intensity={1.65} />
-      <directionalLight position={[0, 6, 8]} intensity={1.2} color="#fff3d5" />
-      <Stars radius={110} depth={20} count={800} factor={2} />
-      <Box p={[0, -0.12, -30]} s={[6, 0.24, 80]} c="#8fa7af" />
-      <Box p={[0, 4.4, -30]} s={[6, 0.2, 80]} c="#507284" />
-      {Array.from({ length: 21 }, (_, i) => -70 + i * 4).map((z) => (
+      <color attach="background" args={["#07172d"]} />
+      <fog attach="fog" args={["#213e59", 58, 145]} />
+      <ambientLight intensity={1.4} />
+      <directionalLight position={[8, 14, 8]} intensity={1.55} color="#fff3d5" />
+      <pointLight position={[0, 4, 6]} intensity={18} distance={16} color="#46dce7" />
+      <Stars radius={125} depth={30} count={1200} factor={2.4} />
+      <MoonVista />
+      <Box p={[0, -0.12, -30]} s={[5.2, 0.24, 80]} c="#536d7d" />
+      {Array.from({ length: 20 }, (_, i) => -68 + i * 4).map((z, i) => (
         <React.Fragment key={z}>
-          <Box p={[0, 4.24, z]} s={[2.3, 0.06, 0.17]} c="#d9e8cf" emissive />
-          <Box p={[-2.5, 0.02, z]} s={[0.07, 0.025, 2.8]} c="#e9c278" />
-          <Box p={[2.5, 0.02, z]} s={[0.07, 0.025, 2.8]} c="#e9c278" />
+          <Box p={[0, 0.03, z]} s={[3.9, 0.025, 3.7]} c={i % 2 ? "#516d7d" : "#5b7785"} />
+          <Box p={[0, 0.055, z]} s={[0.12, 0.035, 2.7]} c="#48dbe5" emissive />
         </React.Fragment>
       ))}
+      {[-7, -17, -27, -37, -47, -57].map((z) => <GlassConnector key={z} z={z} />)}
       {Array.from({ length: 4 }, (_, i) => -10 - i * 20).map((z) => (
         <React.Fragment key={z}>
           {[-3, 3].map((x) => (
@@ -865,21 +991,10 @@ function StationScene({
           />
         )),
       )}
-      <TextSign
-        text="MOONPOOL · CREW DECK"
-        p={[0, 2.6, 9.82]}
-        width={4}
-        rotation={[0, Math.PI, 0]}
-      />
+      <MissionHub />
+      <TextSign text="MOONPOOL · GLASS CONNECTOR DECK" p={[0, 2.6, 9.82]} width={4.8} rotation={[0, Math.PI, 0]} />
       <Suspense fallback={null}>
-        {rooms.map((room) => (
-          <InteriorRoom
-            key={room.id}
-            room={room}
-            story={story}
-            onInteract={onInteract}
-          />
-        ))}
+        {rooms.map((room) => <React.Fragment key={room.id}><WorldShell room={room} /><InteriorRoom room={room} story={story} onInteract={onInteract} /></React.Fragment>)}
       </Suspense>
       <CameraController
         pose={pose}
