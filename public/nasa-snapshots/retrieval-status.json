@@ -1,0 +1,20 @@
+[
+  {
+    "source": "donki-flare",
+    "status": "unavailable",
+    "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>",
+    "endpoint": "https://api.nasa.gov/DONKI/FLR?startDate=2026-11-07&endDate=2026-11-14&api_key=DEMO_KEY"
+  },
+  {
+    "source": "osdr-lettuce-search",
+    "status": "unavailable",
+    "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>",
+    "endpoint": "https://osdr.nasa.gov/osdr/data/search?term=lettuce"
+  },
+  {
+    "source": "radlab",
+    "status": "unavailable",
+    "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>",
+    "endpoint": "https://visualization.osdr.nasa.gov/radlab/gui/data-api"
+  }
+]

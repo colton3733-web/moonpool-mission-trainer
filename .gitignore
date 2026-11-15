@@ -1,0 +1,9 @@
+node_modules/
+dist/
+work/
+.sites-runtime/
+.openai/runtime/
+*.tsbuildinfo
+.env
+.env.*
+.DS_Store
